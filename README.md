@@ -131,8 +131,11 @@ Metrics logged:
 
 ## Author
 Anish Paleja - 2025
+
 "Making machines see and understand people."
+
 Email: `anipaleja@gmail.com`
+
 [LinkedIn](https://www.linkedin.com/in/anish-paleja-85b951328/)
 
 ## License
