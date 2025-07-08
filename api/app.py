@@ -1,26 +1,36 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 from utils.detector import detect_faces
 from utils.encoder import encode_face
 from utils.matcher import match_face
 from utils.database import load_database
-import numpy as np
-import cv2
-from io import BytesIO
 from PIL import Image
+import numpy as np
+from io import BytesIO
+import cv2
 
 app = FastAPI()
 
-@app.post("/recognize")
-async def recognize(file: UploadFile = File(...)):
-    image = Image.open(BytesIO(await file.read())).convert('RGB')
+# Enable CORS for frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.post("/api/recognize")
+async def recognize_face(file: UploadFile = File(...)):
+    db = load_database("embeddings/database.pkl")
+    image = Image.open(BytesIO(await file.read())).convert("RGB")
     frame = np.array(image)
     faces = detect_faces(frame)
-    db = load_database("embeddings/database.pkl")
 
     results = []
     for (x, y, w, h), face_img in faces:
-        encoding = encode_face(face_img)
-        name, confidence = match_face(encoding, db)
-        results.append({"name": name, "confidence": round(confidence, 2)})
+        embedding = encode_face(face_img)
+        name, confidence = match_face(embedding, db)
+        results.append({"name": name, "confidence": confidence, "box": [int(x), int(y), int(w), int(h)]})
 
     return {"results": results}

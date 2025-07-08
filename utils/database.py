@@ -8,5 +8,6 @@ def load_database(path):
     return {}
 
 def save_database(db, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, 'wb') as f:
         pickle.dump(db, f)
