@@ -90,43 +90,32 @@ python evaluate.py --test-data test_dataset/
 Metrics logged:
 
 - Accuracy
-
 - Precision / Recall
-
 - F1-score
-
 - ROC AUC
 
 ## Supported Architectures
 ### Face Detection:
 
 - MTCNN
-
 - RetinaFace
-
 - Haar Cascades (fallback)
 
 ### Face Embedding:
 
 - FaceNet
-
 - ArcFace
-
 - Dlib ResNet
 
 ### Liveness Detection (optional):
 
 - Blink Detection (Eye aspect ratio)
-
 - Texture-based CNN
 
 ## References
 - [FaceNet](https://arxiv.org/abs/1503.03832): A Unified Embedding for Face Recognition and Clustering
-
 - [InsightFace](https://github.com/deepinsight/insightface): 2D and 3D Face Analysis Project
-
 - [MTCNN Face Detector](https://github.com/ipazc/mtcnn)
-
 - [Dlib Face Recognition](https://dlib.net/face_recognition.py.html)
 
 ## Author
@@ -143,9 +132,7 @@ This project is licensed under the **MIT License**.
 
 ## Acknowledgements
 - OpenCV team
-
 - Dlib & DeepInsight contributors
-
 - TensorFlow and PyTorch communities
 
 ## Future Roadmap
