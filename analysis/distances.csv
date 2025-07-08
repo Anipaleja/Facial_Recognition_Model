@@ -1,0 +1,7 @@
+name1,name2,distance
+Alice,Bob,0.72
+Alice,Charlie,0.66
+Alice,Alice,0.12
+Bob,Charlie,0.81
+Bob,Bob,0.10
+Charlie,Charlie,0.15
