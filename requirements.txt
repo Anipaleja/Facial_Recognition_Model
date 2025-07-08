@@ -1,0 +1,10 @@
+opencv-python
+mtcnn
+keras-facenet
+fastapi
+uvicorn
+scikit-learn
+pillow
+numpy
+matplotlib
+jupyter
