@@ -127,8 +127,8 @@ Email: `anipaleja@gmail.com`
 
 [LinkedIn](https://www.linkedin.com/in/anish-paleja-85b951328/)
 
-## License
-This project is licensed under the **MIT License**.
+## Licence
+This project is licenced under the **MIT Licence**.
 
 ## Acknowledgements
 - OpenCV team
