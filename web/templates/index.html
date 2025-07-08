@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FaceSnap</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>FaceSnap</h1>
+
+    <section class="panel">
+      <h2>Recognize a Face</h2>
+      <input type="file" id="imageInput" accept="image/*">
+      <button onclick="uploadImage()">Recognize</button>
+    </section>
+
+    <section class="panel">
+      <h2>Add a Face to Database</h2>
+      <input type="file" id="enrollInput" accept="image/*">
+      <input type="text" id="nameInput" placeholder="Enter name">
+      <button onclick="enrollFace()">Add Face</button>
+    </section>
+
+    <div id="output"></div>
+    <canvas id="canvas"></canvas>
+  </div>
+  <script src="/static/script.js"></script>
+</body>
+</html>

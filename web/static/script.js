@@ -4,12 +4,31 @@ async function uploadImage() {
   const formData = new FormData();
   formData.append('file', file);
 
-  const res = await fetch('http://127.0.0.1:8000/api/recognize', {
+  const res = await fetch('/api/recognize', {
     method: 'POST',
     body: formData
   });
   const data = await res.json();
   displayResults(file, data.results);
+}
+
+async function enrollFace() {
+  const fileInput = document.getElementById('enrollInput');
+  const nameInput = document.getElementById('nameInput');
+  const file = fileInput.files[0];
+  const name = nameInput.value;
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('name', name);
+
+  const res = await fetch('/api/enroll', {
+    method: 'POST',
+    body: formData
+  });
+
+  const result = await res.json();
+  alert(result.message);
 }
 
 function displayResults(file, results) {
@@ -30,7 +49,7 @@ function displayResults(file, results) {
         ctx.strokeRect(x, y, w, h);
         ctx.font = "16px Arial";
         ctx.fillStyle = "#00FF00";
-        ctx.fillText(`${face.name} (${face.confidence.toFixed(1)}%)`, x, y - 5);
+        ctx.fillText(`${face.name} (${(face.confidence * 100).toFixed(1)}%)`, x, y - 5);
       });
     };
     img.src = reader.result;
