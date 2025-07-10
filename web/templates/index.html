@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,24 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/docs">Documentation</a>
+      <a href="/faq">FAQ</a>
+      <a href="/register">Create Account</a>
+      <a href="/login">Login</a>
+      <button id="themeToggle">☀️/🌙</button>
+    </nav>
+  </header>
+
   <div class="container">
     <h1>FaceSnap</h1>
 
     <section class="panel">
       <h2>Recognize a Face</h2>
-      <input type="file" id="imageInput" accept="image/*">
+      <div id="dropzone" class="drop-area">Drop image or click to upload</div>
+      <input type="file" id="imageInput" accept="image/*" style="display:none">
       <button onclick="uploadImage()">Recognize</button>
     </section>
 
@@ -23,9 +35,11 @@
       <button onclick="enrollFace()">Add Face</button>
     </section>
 
+    <div id="loading" style="display:none">Processing...</div>
     <div id="output"></div>
     <canvas id="canvas"></canvas>
   </div>
+
   <script src="/static/script.js"></script>
 </body>
 </html>

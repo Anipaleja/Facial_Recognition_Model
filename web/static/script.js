@@ -1,14 +1,37 @@
+const dropzone = document.getElementById('dropzone');
+const imageInput = document.getElementById('imageInput');
+const loading = document.getElementById('loading');
+
+dropzone.addEventListener('click', () => imageInput.click());
+dropzone.addEventListener('dragover', e => {
+  e.preventDefault();
+  dropzone.classList.add('hover');
+});
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('hover'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropzone.classList.remove('hover');
+  imageInput.files = e.dataTransfer.files;
+});
+
+document.getElementById('themeToggle').onclick = () => {
+  const html = document.documentElement;
+  const dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+};
+
 async function uploadImage() {
-  const input = document.getElementById('imageInput');
-  const file = input.files[0];
+  const file = imageInput.files[0];
   const formData = new FormData();
   formData.append('file', file);
 
+  loading.style.display = 'block';
   const res = await fetch('/api/recognize', {
     method: 'POST',
     body: formData
   });
   const data = await res.json();
+  loading.style.display = 'none';
   displayResults(file, data.results);
 }
 
@@ -22,10 +45,12 @@ async function enrollFace() {
   formData.append('file', file);
   formData.append('name', name);
 
+  loading.style.display = 'block';
   const res = await fetch('/api/enroll', {
     method: 'POST',
     body: formData
   });
+  loading.style.display = 'none';
 
   const result = await res.json();
   alert(result.message);
@@ -56,3 +81,26 @@ function displayResults(file, results) {
   };
   reader.readAsDataURL(file);
 }
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.getElementById("loader");
+    if (loader) {
+        loader.style.display = "none";
+    }
+
+    const webcamBtn = document.getElementById("webcam-btn");
+    if (webcamBtn) {
+        webcamBtn.addEventListener("click", () => {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const video = document.getElementById("webcam");
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(console.error);
+        });
+    }
+});
