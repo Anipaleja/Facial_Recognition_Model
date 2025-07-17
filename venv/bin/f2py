@@ -1,4 +1,6 @@
-#!/Users/anishpaleja/Facial_Recognition_Model/venv/bin/python3
+#!/bin/sh
+'''exec' "/Users/anishpaleja/Library/Mobile Documents/com~apple~CloudDocs/Facial_Recognition_Model/venv/bin/python" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

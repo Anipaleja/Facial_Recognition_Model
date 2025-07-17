@@ -4,12 +4,12 @@ mtcnn
 opencv-python
 keras-facenet
 scikit-learn
-numpy==1.24.4
+numpy>=1.26.0,<2.0
 pillow
 python-multipart
 jupyter
 matplotlib
-tensorflow-macos
-tensorflow-metal
-python-multipart
+tensorflow==2.16.1
 jinja2
+passlib[bcrypt]
+python-jose[cryptography]
