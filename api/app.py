@@ -18,7 +18,7 @@ import pickle
 import sqlite3
 from typing import Optional
 from jose import JWTError, jwt
-print("✅ python-jose is installed and working")
+print("python-jose is installed and working")
 
 from fastapi.security.utils import get_authorization_scheme_param
 
